@@ -18,14 +18,18 @@ namespace Catalog.Infrastructure.Persistance.Repositories
             _dbContext = dbContext;
         }
 
-        public CategoryId Add(Category category)
+        public async Task<CategoryId> Insert(Category category)
         {
-            throw new NotImplementedException();
+            _dbContext.Categories.Add(category);
+            await _dbContext.SaveChangesAsync();
+            return category.Id;
         }
 
-        public bool Delete(Category category)
+        public async Task<bool> Delete(Category category)
         {
-            throw new NotImplementedException();
+            _dbContext.Categories.Remove(category);
+            await _dbContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<List<Category>> GetAll()
@@ -33,9 +37,11 @@ namespace Catalog.Infrastructure.Persistance.Repositories
             return await _dbContext.Categories.ToListAsync();
         }
 
-        public CategoryId Update(Category category)
+        public async Task<CategoryId> Update(Category category)
         {
-            throw new NotImplementedException();
+            _dbContext.Categories.Update(category);
+            await _dbContext.SaveChangesAsync();
+            return category.Id;
         }
     }
 }

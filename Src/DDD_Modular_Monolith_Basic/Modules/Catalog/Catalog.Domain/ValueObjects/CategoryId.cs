@@ -16,12 +16,12 @@ namespace Catalog.Domain.ValueObjects
 
         public static CategoryId CreateUnique() => new(Guid.NewGuid());
 
-        public static CategoryId Create(Guid value)
+        public static CategoryId Create(Guid? value)
         {
-            if (value == Guid.Empty)
+            if (value == null || value == Guid.Empty)
                 throw new ArgumentException("Customer ID cannot be empty.", nameof(value));
 
-            return new CategoryId(value);
+            return new CategoryId(value.Value);
         }
 
         protected override IEnumerable<object> GetEqualityComponents()

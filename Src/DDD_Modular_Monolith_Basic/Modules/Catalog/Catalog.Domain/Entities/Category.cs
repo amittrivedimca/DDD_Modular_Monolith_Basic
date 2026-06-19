@@ -8,7 +8,12 @@ namespace Catalog.Domain.Entities
 {
     public class Category : AggregateRoot<CategoryId>
     {
-        //public CategoryId Id { get; set; }
+        public Category() { }
+
+        public Category(CategoryId id) {
+            Id = id;
+        }
+                
         public string Name { get; set; }
         public Photo? Image { get; set; }
     }

@@ -9,8 +9,8 @@ namespace Catalog.Domain.Repositories
     public interface ICategoryRepository
     {
         Task<List<Category>> GetAll();
-        CategoryId Add(Category category); 
-        CategoryId Update(Category category);
-        bool Delete(Category category);
+        Task<CategoryId> Insert(Category category);
+        Task<CategoryId> Update(Category category);
+        Task<bool> Delete(Category category);
     }
 }

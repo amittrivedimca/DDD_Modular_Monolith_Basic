@@ -9,6 +9,12 @@ namespace Catalog.Domain.ValueObjects
 {
     public class Photo : ValueObject
     {
+        public Photo(string name, string url)
+        {
+            Name = name;
+            Url = url;
+        }
+
         public string Name { get; set; }
         public string Url { get; set; }
 

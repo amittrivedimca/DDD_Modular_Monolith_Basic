@@ -22,5 +22,12 @@ namespace MM.CatalogAPI.Controllers
         {
             return await _prodCategoryModule.GetAllCategoriesAsync();
         }
+
+        [HttpPost(Name = "InsertOrUpdateCategory")]
+        public async Task<ActionResult> InsertOrUpdateCategory([FromBody] CategoryInfo categoryInfo)
+        {
+            var result = await _prodCategoryModule.InsertOrUpdate(categoryInfo);
+            return Ok(new { Id = result, Success = true });
+        }
     }
 }
