@@ -21,7 +21,7 @@ namespace Catalog.Infrastructure.Services
         {
             var list = await _categoryRepository.GetAll();
 
-            var result = list.Select(c => new CategoryInfo(c.Value.Id, c.Name))
+            var result = list.Select(c => new CategoryInfo(c.Id.Id, c.Name))
                 .ToList();
 
             return result;

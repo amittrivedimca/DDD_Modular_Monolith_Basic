@@ -10,7 +10,7 @@ namespace Catalog.Domain.Entities
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public Photo Image { get; set; }
+        public Photo? Image { get; set; }
         public CategoryId CategoryId { get; set; }
         public decimal Price { get; set; }
         public int Amount { get; set; }

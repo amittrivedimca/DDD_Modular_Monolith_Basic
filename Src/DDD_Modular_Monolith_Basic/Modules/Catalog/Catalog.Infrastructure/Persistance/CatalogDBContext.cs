@@ -16,6 +16,12 @@ namespace Catalog.Infrastructure.Persistance
             
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogDBContext).Assembly);
+            base.OnModelCreating(modelBuilder);
+        }
+
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return await base.SaveChangesAsync(cancellationToken);

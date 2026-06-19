@@ -7,11 +7,11 @@ namespace Catalog.Domain.ValueObjects
 {
     public class ProductId : ValueObject
     {
-        public Guid Value { get; }
+        public Guid Id { get; }
 
         private ProductId(Guid value)
         {
-            Value = value;
+            Id = value;
         }
 
         public static ProductId CreateUnique() => new(Guid.NewGuid());
@@ -26,9 +26,9 @@ namespace Catalog.Domain.ValueObjects
 
         protected override IEnumerable<object> GetEqualityComponents()
         {
-            yield return Value;
+            yield return Id;
         }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Id.ToString();
     }
 }
