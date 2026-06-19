@@ -1,0 +1,21 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Src/DDD_Modular_Monolith_Basic/.vs/DDD_Modular_Monolith_Basic/CopilotIndices
+/Src/DDD_Modular_Monolith_Basic/.vs/DDD_Modular_Monolith_Basic.slnx/copilot-chat/05ed34af/sessions
+/Src/DDD_Modular_Monolith_Basic/.vs/DDD_Modular_Monolith_Basic.slnx/DesignTimeBuild
+/Src/DDD_Modular_Monolith_Basic/.vs/DDD_Modular_Monolith_Basic.slnx/FileContentIndex
+/Src/DDD_Modular_Monolith_Basic/.vs/DDD_Modular_Monolith_Basic.slnx/v18
+/Src/DDD_Modular_Monolith_Basic/.vs/ProjectEvaluation
+/Src/DDD_Modular_Monolith_Basic/MM.CatalogAPI/bin/Debug/net10.0
+/Src/DDD_Modular_Monolith_Basic/MM.CatalogAPI/obj/Debug/net10.0
+/Src/DDD_Modular_Monolith_Basic/MM.CatalogAPI/obj
+/Src/DDD_Modular_Monolith_Basic/Modules/Catalog/Catalog.Application/bin/Debug/net10.0
+/Src/DDD_Modular_Monolith_Basic/Modules/Catalog/Catalog.Application/obj
+/Src/DDD_Modular_Monolith_Basic/Modules/Catalog/Catalog.Domain/bin/Debug/net10.0
+/Src/DDD_Modular_Monolith_Basic/Modules/Catalog/Catalog.Domain/obj
+/Src/DDD_Modular_Monolith_Basic/Modules/Catalog/Catalog.Infrastructure/bin/Debug/net10.0
+/Src/DDD_Modular_Monolith_Basic/Modules/Catalog/Catalog.Infrastructure/obj
+/Src/DDD_Modular_Monolith_Basic/Shared/SharedKernel/bin/Debug/net10.0
+/Src/DDD_Modular_Monolith_Basic/Shared/SharedKernel/obj
