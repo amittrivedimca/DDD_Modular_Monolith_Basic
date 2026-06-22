@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SharedKernel
 {
-    public abstract class AggregateRoot<TId> : Entity<TId> where TId : notnull
+    public abstract class AggregateRoot<TId> : Entity<TId>, IHasDomainEvent where TId : notnull
     {
         private readonly List<IDomainEvent> _domainEvents = [];
 

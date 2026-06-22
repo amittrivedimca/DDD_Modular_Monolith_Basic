@@ -7,9 +7,13 @@ using System.Text;
 namespace Catalog.Domain.Events
 {
 
-    public sealed record CategoryCreatedDomainEvent(CategoryId CategoryId, string Name) : IDomainEvent
+
+
+    public record CategoryDomainEvent(CategoryId CategoryId, string Name, string EventName) : IDomainEvent
     {
         public Guid EventId { get; } = Guid.NewGuid();
+        public string EventName { get; } = EventName;
         public DateTime OccurredOn { get; } = DateTime.UtcNow;
+        
     }
 }

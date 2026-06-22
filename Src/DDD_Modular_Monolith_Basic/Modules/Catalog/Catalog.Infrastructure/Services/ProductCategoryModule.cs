@@ -37,22 +37,24 @@ namespace Catalog.Infrastructure.Services
             if (categoryInfo.CategoryId == null || categoryInfo.CategoryId == Guid.Empty)
             {
                 // Insert logic
-                var result = await _categoryRepository.Insert(new Category(CategoryId.CreateUnique())
-                {
-                    Name = categoryInfo.Name,
-                    Image = categoryInfo.Image == null ? null : new Photo(categoryInfo.Image.Name, categoryInfo.Image.Url)
-                });
+                var category = Category.CreateNew(categoryInfo.Name)
+                    .SetImage(categoryInfo.Image?.Name, categoryInfo.Image?.Url);
+                category.OnCategoryCreated();// Event will be raised via interceptor on save changes
+
+                var result = await _categoryRepository.Insert(category); 
 
                 id = result.Id;
             }
             else
             {
                 // Update logic
-                var result = await _categoryRepository.Update(new Category(CategoryId.Create(categoryInfo.CategoryId))
-                {
-                    Name = categoryInfo.Name,
-                    Image = categoryInfo.Image == null ? null : new Photo(categoryInfo.Image.Name, categoryInfo.Image.Url)
-                });
+                var category = Category.CreateWithId(categoryInfo.CategoryId.Value,
+                    categoryInfo.Name
+                    ).SetImage(categoryInfo.Image?.Name, categoryInfo.Image?.Url);
+
+                category.OnCategoryUpdated();// Event will be raised via interceptor on save changes
+
+                var result = await _categoryRepository.Update(category);
 
                 id = result.Id;
             }
