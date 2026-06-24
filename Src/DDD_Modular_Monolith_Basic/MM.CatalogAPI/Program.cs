@@ -6,7 +6,7 @@ using Catalog.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 // Catalog Module
-builder.Services.AddCatalogApplication();
+builder.Services.AddCatalogApplication(builder.Configuration);
 builder.Services.AddCatalogInfrastructure(builder.Configuration);
 
 // Add services to the container.

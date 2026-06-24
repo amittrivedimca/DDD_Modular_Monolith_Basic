@@ -1,20 +1,16 @@
-﻿using Catalog.Application.Contracts;
-using Catalog.Application.DTOs;
+﻿using Catalog.Application.DTOs;
+using Catalog.Application.ServiceInterfaces;
 using Catalog.Domain.Entities;
 using Catalog.Domain.Repositories;
 using Catalog.Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Catalog.Infrastructure.Services
+namespace Catalog.Application.Services
 {
-    public sealed class ProductCategoryModule : IProductCategoryModule
+    public class ProductCategoryService : IProductCategoryService
     {
-        
         private readonly ICategoryRepository _categoryRepository;
 
-        public ProductCategoryModule(ICategoryRepository categoryRepository)
+        public ProductCategoryService(ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }
@@ -23,7 +19,7 @@ namespace Catalog.Infrastructure.Services
         {
             var list = await _categoryRepository.GetAll();
 
-            var result = list.Select(c => new CategoryInfo(c.Id.Id, c.Name, 
+            var result = list.Select(c => new CategoryInfo(c.Id.Id, c.Name,
                 c.Image == null ? null : new Photo(c.Image.Name, c.Image.Url)))
                 .ToList();
 
@@ -41,7 +37,7 @@ namespace Catalog.Infrastructure.Services
                     .SetImage(categoryInfo.Image?.Name, categoryInfo.Image?.Url);
                 category.OnCategoryCreated();// Event will be raised via interceptor on save changes
 
-                var result = await _categoryRepository.Insert(category); 
+                var result = await _categoryRepository.Insert(category);
 
                 id = result.Id;
             }

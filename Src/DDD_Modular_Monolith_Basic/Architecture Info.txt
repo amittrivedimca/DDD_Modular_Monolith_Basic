@@ -1,0 +1,30 @@
+
+Modular monolith architecture = layered architecture = domain-driven design (DDD) + clean architecture 
+
+Each module is a separate project in the solution, with its own domain, application, and infrastructure layers.
+This architecture can be easily extended to a microservices architecture, where each module becomes a separate service.
+
+Domain layer = the core business model of the system.
+•	Domain should not depend on UI, database, or framework details.
+•	Other layers depend on Domain, not the other way around.
+•	Business rules and invariants (what must always be true)
+•	Domain concepts: entities, value objects, aggregates
+•	Domain behaviors (methods that enforce business logic)
+•	Domain events (important business facts)
+•	The domain raises events when business state changes, independent of API, EF Core, or other infrastructure.
+
+Application layer = use-case orchestration
+•	Coordinates business flows (commands/queries, transactions, domain events triggering).
+•	Uses domain abstractions (like repository interfaces), not concrete DB/framework code.
+•	Maps between transport models/DTOs and domain models.
+•	In solution, Catalog.Application.Services.ProductCategoryService is a good example.
+
+Infrastructure layer = technical implementation details
+•	Implements interfaces from domain/application (repositories, message bus, email, file storage, etc.).
+•	Contains EF Core DbContext, repository implementations, migrations, interceptors.
+•	Depends on external libraries and frameworks.
+•	In solution, Catalog.Infrastructure.Persistance + CategoryRepository are infrastructure concerns.
+
+-----------------------------------------------------------------------------------------------------------
+
+There are 2 modules in the solution: Catalog and Order (Cart). Each module has its own domain, application, and infrastructure layers.

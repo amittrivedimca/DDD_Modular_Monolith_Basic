@@ -1,6 +1,5 @@
-﻿using Catalog.Application.Contracts;
+﻿using Catalog.Application.ServiceInterfaces;
 using Catalog.Application.DTOs;
-using Catalog.Infrastructure.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,23 +9,23 @@ namespace MM.CatalogAPI.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly IProductCategoryModule _prodCategoryModule;
+        private readonly IProductCategoryService _prodCategoryService;
 
-        public CategoryController(IProductCategoryModule prodCategoryModule)
+        public CategoryController(IProductCategoryService prodCategoryService)
         {
-            _prodCategoryModule = prodCategoryModule;
+            _prodCategoryService = prodCategoryService;
         }
 
         [HttpGet(Name = "GetAllCategory")]
         public async Task<IEnumerable<CategoryInfo>> GetAllCategory()
         {
-            return await _prodCategoryModule.GetAllCategoriesAsync();
+            return await _prodCategoryService.GetAllCategoriesAsync();
         }
 
         [HttpPost(Name = "InsertOrUpdateCategory")]
         public async Task<ActionResult> InsertOrUpdateCategory([FromBody] CategoryInfo categoryInfo)
         {
-            var result = await _prodCategoryModule.InsertOrUpdate(categoryInfo);
+            var result = await _prodCategoryService.InsertOrUpdate(categoryInfo);
             return Ok(new { Id = result, Success = true });
         }
     }

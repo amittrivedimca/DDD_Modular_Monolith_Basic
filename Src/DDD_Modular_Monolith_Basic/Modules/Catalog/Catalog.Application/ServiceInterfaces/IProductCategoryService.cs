@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Catalog.Application.Contracts
+namespace Catalog.Application.ServiceInterfaces
 {
-    public interface IProductCategoryModule
+    public interface IProductCategoryService
     {
         Task<List<CategoryInfo>> GetAllCategoriesAsync();
         Task<Guid> InsertOrUpdate(CategoryInfo categoryInfo);

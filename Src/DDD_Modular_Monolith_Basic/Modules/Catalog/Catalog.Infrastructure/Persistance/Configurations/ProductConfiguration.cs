@@ -26,6 +26,11 @@ namespace Catalog.Infrastructure.Persistance.Configurations
                     value => CategoryId.Create(value))
                 .HasColumnName("CategoryId");
 
+            builder.HasOne(x => x.Category)
+                .WithMany()
+                .HasForeignKey(x => x.CategoryId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             builder.Property(x => x.Name)
                 .HasMaxLength(50)
                 .HasColumnName("Name");
@@ -39,6 +44,13 @@ namespace Catalog.Infrastructure.Persistance.Configurations
                 photo.Property(p => p.Name).HasColumnName("ImageName");
                 photo.Property(p => p.Url).HasColumnName("ImageUrl");
             });
+
+            builder.Property(x => x.Price)
+                .HasColumnType("decimal(13,2)")
+                .HasColumnName("Price");
+
+            builder.Property(x => x.Amount);
+
         }
     }
 }

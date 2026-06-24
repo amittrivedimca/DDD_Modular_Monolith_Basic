@@ -1,6 +1,10 @@
 <Solution>
   <Folder Name="/Modules/" />
-  <Folder Name="/Modules/Cart/" />
+  <Folder Name="/Modules/Cart/">
+    <Project Path="Modules/Cart/Cart.Application/Cart.Application.csproj" Id="7c324aa2-04d3-44ff-8af5-2b0072dde3bf" />
+    <Project Path="Modules/Cart/Cart.Domain/Cart.Domain.csproj" Id="6b71b3f4-5749-4d4b-b341-e567879ea9b0" />
+    <Project Path="Modules/Cart/Cart.Infrastructure/Cart.Infrastructure.csproj" Id="983fa28b-7dce-4999-bb10-96e48ab51040" />
+  </Folder>
   <Folder Name="/Modules/Catalog/">
     <Project Path="Modules/Catalog/Catalog.Application/Catalog.Application.csproj" Id="a85266f4-52f5-423d-98d2-aaa9a05e3c48" />
     <Project Path="Modules/Catalog/Catalog.Domain/Catalog.Domain.csproj" Id="bb8defe7-634a-422e-8adb-9bcf875c9887" />
@@ -8,6 +12,9 @@
   </Folder>
   <Folder Name="/Shared/">
     <Project Path="Shared/SharedKernel/SharedKernel.csproj" Id="fded85ef-2ae2-48a3-bae0-c8c66686112b" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="Architecture Info.txt" />
   </Folder>
   <Project Path="MM.CatalogAPI/MM.CatalogAPI.csproj" />
 </Solution>

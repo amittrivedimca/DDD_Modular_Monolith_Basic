@@ -12,6 +12,7 @@ namespace Catalog.Domain.Entities
         public string Description { get; set; }
         public Photo? Image { get; set; }
         public CategoryId CategoryId { get; set; }
+        public Category? Category { get; set; } = null;
         public decimal Price { get; set; }
         public int Amount { get; set; }
     }
