@@ -9,6 +9,8 @@ Domain layer = the core business model of the system.
 •	Other layers depend on Domain, not the other way around.
 •	Business rules and invariants (what must always be true)
 •	Domain concepts: entities, value objects, aggregates
+•	Aggregates are designed to protect business rules during writes (insert, update, delete)
+•	Queries often just need data for display. So a query can read from the database and map directly to a DTO/read model, without constructing the full domain object.
 •	Domain behaviors (methods that enforce business logic)
 •	Domain events (important business facts)
 •	The domain raises events when business state changes, independent of API, EF Core, or other infrastructure.
@@ -17,7 +19,7 @@ Application layer = use-case orchestration
 •	Coordinates business flows (commands/queries, transactions, domain events triggering).
 •	Uses domain abstractions (like repository interfaces), not concrete DB/framework code.
 •	Maps between transport models/DTOs and domain models.
-•	In solution, Catalog.Application.Services.ProductCategoryService is a good example.
+•	In solution, Catalog.Application.Services.ProductCategoryService is a good example. Uses services (not command + query)
 
 Infrastructure layer = technical implementation details
 •	Implements interfaces from domain/application (repositories, message bus, email, file storage, etc.).

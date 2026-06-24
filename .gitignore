@@ -23,3 +23,7 @@
 /Src/DDD_Modular_Monolith_Basic/Modules/Cart/Cart.Application/obj
 /Src/DDD_Modular_Monolith_Basic/Modules/Cart/Cart.Domain/obj
 /Src/DDD_Modular_Monolith_Basic/Modules/Cart/Cart.Infrastructure/obj
+/Src/DDD_Modular_Monolith_Basic/Modules/Cart/Cart.Application/bin/Debug/net10.0
+/Src/DDD_Modular_Monolith_Basic/Modules/Cart/Cart.Domain/bin/Debug/net10.0
+/Src/DDD_Modular_Monolith_Basic/Modules/Cart/Cart.Infrastructure/bin/Debug/net10.0
+/.vs/CopilotSnapshots/6807F7FE68F7DD4F929D2B77A1338C02
