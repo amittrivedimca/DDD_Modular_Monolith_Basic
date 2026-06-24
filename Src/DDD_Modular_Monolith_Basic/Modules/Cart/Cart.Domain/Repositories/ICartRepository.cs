@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Cart.Domain.Entities;
 
 namespace Cart.Domain.Repositories
 {
