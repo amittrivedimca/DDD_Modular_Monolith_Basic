@@ -2,12 +2,16 @@
 using Scalar.AspNetCore;
 using Catalog.Application;
 using Catalog.Infrastructure;
+using Cart.Infrastructure;
+using Cart.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Catalog Module
 builder.Services.AddCatalogApplication(builder.Configuration);
 builder.Services.AddCatalogInfrastructure(builder.Configuration);
+
+builder.Services.AddCartInfrastructure(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddControllers();

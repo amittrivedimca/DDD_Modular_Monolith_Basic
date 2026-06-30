@@ -1,12 +1,9 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using SharedKernel;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Catalog.Infrastructure.Persistance.Interceptors
+namespace Cart.Infrastructure.Persistance.Interceptors
 {
     /// <summary>
     /// EF Core interceptor that dispatches domain events after saving changes.
