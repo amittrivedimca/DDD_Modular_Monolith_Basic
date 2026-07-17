@@ -12,39 +12,39 @@ namespace Cart.Infrastructure.Persistance.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<IReadOnlyCollection<Domain.Entities.Cart>> GetAll()
+        public async Task<IReadOnlyCollection<Domain.Entities.Cart>> GetAll(CancellationToken cancellationToken)
         {
             return await _dbContext.Carts
                 .Include(c => c.CartItems)
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
         }
 
-        public async Task<Domain.Entities.Cart?> GetById(Guid id)
+        public async Task<Domain.Entities.Cart?> GetById(Guid id, CancellationToken cancellationToken)
         {
             return await _dbContext.Carts
                 .Include(c => c.CartItems)
-                .FirstOrDefaultAsync(c => c.Id.Id == id);
+                .FirstOrDefaultAsync(c => c.Id.Id == id, cancellationToken);
         }
 
-        public async Task Add(Domain.Entities.Cart cart)
+        public async Task Add(Domain.Entities.Cart cart, CancellationToken cancellationToken)
         {
             _dbContext.Carts.Add(cart);
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task Update(Domain.Entities.Cart cart)
+        public async Task Update(Domain.Entities.Cart cart, CancellationToken cancellationToken)
         {
             _dbContext.Carts.Update(cart);
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task Delete(Guid id)
+        public async Task Delete(Guid id, CancellationToken cancellationToken)
         {
-            var cart = await GetById(id);
+            var cart = await GetById(id, cancellationToken);
             if (cart is not null)
             {
                 _dbContext.Carts.Remove(cart);
-                await _dbContext.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync(cancellationToken);
             }
         }
     }

@@ -42,7 +42,7 @@ namespace Cart.Infrastructure.Persistance.Configurations
                 .HasMaxLength(50)
                 .HasColumnName("ImageUrl");
 
-            builder.Property(x => x.Price)
+            builder.Property(x => x.SellPrice)
                 .IsRequired()
                 .HasPrecision(13, 2)
                 .HasColumnName("Price");

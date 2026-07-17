@@ -29,5 +29,7 @@ namespace Cart.Domain.ValueObjects
         }
 
         public override string ToString() => Id.ToString();
+
+
     }
 }

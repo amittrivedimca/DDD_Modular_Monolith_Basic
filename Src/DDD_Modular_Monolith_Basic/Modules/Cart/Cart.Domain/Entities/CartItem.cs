@@ -12,26 +12,26 @@ namespace Cart.Domain.Entities
         public string Name { get; private set; } = string.Empty;
         public string? ImageName { get; private set; }
         public string? ImageUrl { get; private set; }
-        public decimal Price { get; private set; }
+        public decimal SellPrice { get; private set; }
         public int Quantity { get; private set; }
 
         // Required by EF Core
         private CartItem() { }
 
-        private CartItem(CartItemId id, CartId cartId, string name, decimal price, int quantity)
+        private CartItem(CartItemId id, CartId cartId, string name, decimal sellPrice, int quantity)
         {
             Id = id;
             SetCartId(cartId);
             SetName(name);
-            SetPrice(price);
+            SetPrice(sellPrice);
             SetQuantity(quantity);
         }
 
-        public static CartItem CreateNew(CartId cartId, string name, decimal price, int quantity) =>
-            new(CartItemId.CreateUnique(), cartId, name, price, quantity);
+        public static CartItem CreateNew(CartId cartId, string name, decimal sellPrice, int quantity) =>
+            new(CartItemId.CreateUnique(), cartId, name, sellPrice, quantity);
 
-        public static CartItem CreateWithId(Guid id, CartId cartId, string name, decimal price, int quantity) =>
-            new(CartItemId.Create(id), cartId, name, price, quantity);
+        public static CartItem CreateWithId(Guid id, CartId cartId, string name, decimal sellPrice, int quantity) =>
+            new(CartItemId.Create(id), cartId, name, sellPrice, quantity);
 
         public CartItem SetImageName(string? imageName)
         {
@@ -51,9 +51,9 @@ namespace Cart.Domain.Entities
             return this;
         }
 
-        public CartItem UpdatePrice(decimal price)
+        public CartItem UpdateSellPrice(decimal sellPrice)
         {
-            SetPrice(price);
+            SetPrice(sellPrice);
             return this;
         }
 
@@ -74,12 +74,12 @@ namespace Cart.Domain.Entities
             Name = normalized;
         }
 
-        private void SetPrice(decimal price)
+        private void SetPrice(decimal sellPrice)
         {
-            if (price < 0)
-                throw new ArgumentException("Price cannot be negative.", nameof(price));
+            if (sellPrice < 0)
+                throw new ArgumentException("SellPrice cannot be negative.", nameof(sellPrice));
 
-            Price = price;
+            SellPrice = sellPrice;
         }
 
         private void SetQuantity(int quantity)

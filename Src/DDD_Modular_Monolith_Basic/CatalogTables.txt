@@ -1,0 +1,61 @@
+USE [CatalogDB]
+GO
+ALTER TABLE [dbo].[Products] DROP CONSTRAINT [FK_Product_Category]
+GO
+ALTER TABLE [dbo].[Products] DROP CONSTRAINT [DF_Product_Id]
+GO
+ALTER TABLE [dbo].[Categories] DROP CONSTRAINT [DF_Category_Id]
+GO
+/****** Object:  Table [dbo].[Products]    Script Date: 30-Jun-26 4:30:12 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Products]') AND type in (N'U'))
+DROP TABLE [dbo].[Products]
+GO
+/****** Object:  Table [dbo].[Categories]    Script Date: 30-Jun-26 4:30:12 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Categories]') AND type in (N'U'))
+DROP TABLE [dbo].[Categories]
+GO
+/****** Object:  Table [dbo].[Categories]    Script Date: 30-Jun-26 4:30:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Categories](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Name] [varchar](50) NULL,
+	[ImageName] [varchar](50) NULL,
+	[ImageUrl] [varchar](50) NULL,
+ CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Products]    Script Date: 30-Jun-26 4:30:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Products](
+	[Id] [uniqueidentifier] NOT NULL,
+	[CategoryId] [uniqueidentifier] NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[Description] [varchar](50) NULL,
+	[ImageName] [varchar](50) NULL,
+	[ImageUrl] [varchar](50) NULL,
+	[Price] [decimal](13, 2) NULL,
+	[Amount] [int] NULL,
+ CONSTRAINT [PK_Product] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Categories] ADD  CONSTRAINT [DF_Category_Id]  DEFAULT (newid()) FOR [Id]
+GO
+ALTER TABLE [dbo].[Products] ADD  CONSTRAINT [DF_Product_Id]  DEFAULT (newid()) FOR [Id]
+GO
+ALTER TABLE [dbo].[Products]  WITH CHECK ADD  CONSTRAINT [FK_Product_Category] FOREIGN KEY([CategoryId])
+REFERENCES [dbo].[Categories] ([Id])
+GO
+ALTER TABLE [dbo].[Products] CHECK CONSTRAINT [FK_Product_Category]
+GO
